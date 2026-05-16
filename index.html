@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lanny Madhavan — Front-End Developer specialising in accessibility, CMS platforms and performance." />
+  <title>Lanny Madhavan | Front-End Developer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ── TOP BAR (always visible, all screen sizes) ── -->
+  <header class="topbar">
+    <a class="topbar-brand" href="#home">LM.</a>
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="sidebar">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ── SIDEBAR (slide-in on all screen sizes) ── -->
+  <aside class="sidebar" id="sidebar" aria-label="Site navigation">
+    <div class="sidebar-close">
+      <button id="closeBtn" aria-label="Close navigation">Close ✕</button>
+    </div>
+    <div>
+      <div class="brand">LM.</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home"       class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="sidebar-footer">
+      <p class="sidebar-bio">Front-end developer specialising in accessibility, CMS platforms, performance and user-focused digital experiences.</p>
+      <div class="socials">
+        <a href="https://github.com/lannym" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/lanny-madhavan/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:lanny.m77@gmail.com">Email</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main>
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="hero" id="home">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Front-End Developer · Accessibility · CMS · Performance</span>
+            <h1>Building the web with purpose.</h1>
+            <p class="lead">Over a decade of experience crafting accessible, high-performance websites. I work across HTML, CSS, JavaScript and CMS ecosystems including WordPress, Webvision, MODX and Salesforce Experience Cloud.</p>
+            <div class="cta-group">
+              <a class="btn btn-primary" href="#work">View my work</a>
+              <a class="btn btn-secondary" href="#contact">Get in touch</a>
+            </div>
+          </div>
+
+          <div class="hero-carousel">
+            <div class="slides" id="slides">
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Developer workspace" />
+                <div class="slide-caption"><p>Front-End Development</p></div>
+              </div>
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="Analytics dashboard" />
+                <div class="slide-caption"><p>Performance &amp; Analytics</p></div>
+              </div>
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Accessibility work" />
+                <div class="slide-caption"><p>Accessibility &amp; WCAG</p></div>
+              </div>
+              <div class="slide">
+                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=900&q=80" alt="CMS platforms" />
+                <div class="slide-caption"><p>CMS &amp; Content Platforms</p></div>
+              </div>
+            </div>
+            <div class="carousel-dots" id="dots"></div>
+            <div class="carousel-controls">
+              <button class="carousel-btn" id="prevBtn" aria-label="Previous slide">&#8249;</button>
+              <button class="carousel-btn" id="nextBtn" aria-label="Next slide">&#8250;</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="two-col">
+          <div>
+            <span class="eyebrow">About</span>
+            <h2>Accessibility, structure and performance at the core</h2>
+            <p class="lead">I build responsive, accessible websites meeting WCAG standards while improving performance, SEO and overall user experience. Comfortable across the full website lifecycle — from development to CMS governance and Agile cross-team delivery.</p>
+          </div>
+          <div class="about-cards">
+            <div class="card">
+              <div class="card-icon">⟨/⟩</div>
+              <h3>Front-End Dev</h3>
+              <p>HTML5, CSS3, SCSS, JavaScript ES6+, jQuery, responsive and mobile-first development.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">⊞</div>
+              <h3>CMS &amp; Platforms</h3>
+              <p>WordPress, Webvision, MODX Evolution/Revolution.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">♿</div>
+              <h3>Accessibility</h3>
+              <p>WCAG standards, SiteImprove audits, semantic HTML and thorough cross-browser testing.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">◎</div>
+              <h3>Performance &amp; SEO</h3>
+              <p>Lighthouse audits, image optimisation, SEO best practice and cleaner digital journeys.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section aria-label="Key statistics">
+        <div class="stats-grid">
+          <div class="stat">
+            <strong>10+</strong>
+            <p>Years building and improving websites and digital platforms</p>
+          </div>
+          <div class="stat">
+            <strong>5k+</strong>
+            <p>Institutional investor signatories served via PRI digital platforms</p>
+          </div>
+          <div class="stat">
+            <strong>4.5M</strong>
+            <p>Unique users reached through NPG digital platform work</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <span class="eyebrow">Experience</span>
+        <h2 style="margin-bottom:2rem;">Roles across public-facing digital platforms</h2>
+        <div class="exp-grid">
+
+          <div class="exp-card">
+            <span class="exp-date">Feb 2023 — Present <span class="exp-current">Now</span></span>
+            <div class="exp-org">Principles for Responsible Investment</div>
+            <div class="exp-title">Senior Website Associate</div>
+            <ul class="exp-points">
+              <li>Accessible pages for 5,000+ institutional investors globally</li>
+              <li>Led PRI Academy block-based WordPress rebuild</li>
+              <li>Lighthouse scores improved from ~10 to 40+ on Salesforce pages</li>
+              <li>GitHub branching &amp; multi-org deployments to production</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <span class="exp-date">Oct 2021 — Feb 2023</span>
+            <div class="exp-org">Principles for Responsible Investment</div>
+            <div class="exp-title">Website Associate</div>
+            <ul class="exp-points">
+              <li>Responsive pages to WCAG and SEO standards</li>
+              <li>Improved Webvision CMS templates &amp; editorial workflows</li>
+              <li>Delivered Advance Stewardship, PRI Awards &amp; climate content</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <span class="exp-date">Nov 2020 — Oct 2021</span>
+            <div class="exp-org">Principles for Responsible Investment</div>
+            <div class="exp-title">Website Assistant</div>
+            <ul class="exp-points">
+              <li>Day-to-day updates maintaining brand &amp; accessibility</li>
+              <li>Built responsive pages in Webvision CMS</li>
+              <li>Implemented site search to improve content discovery</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <span class="exp-date">Apr 2016 — Jun 2020</span>
+            <div class="exp-org">National Portrait Gallery</div>
+            <div class="exp-title">New Media Officer</div>
+            <ul class="exp-points">
+              <li>Responsive pages &amp; microsites via MODX for millions of visitors</li>
+              <li>WCAG accessibility improvements via SiteImprove audits</li>
+              <li>Designed responsive events calendar for exhibitions</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <span class="exp-date">Apr 2013 — Apr 2016</span>
+            <div class="exp-org">National Portrait Gallery</div>
+            <div class="exp-title">New Media Assistant</div>
+            <ul class="exp-points">
+              <li>360+ event pages per quarter within two-week cycles</li>
+              <li>Contributed to 14% visit increase — 4.5M unique users</li>
+              <li>Grew newsletter subscriptions via on-site prompts</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <span class="exp-date">Sep 2012 — Apr 2013</span>
+            <div class="exp-org">National Portrait Gallery</div>
+            <div class="exp-title">Digital Programmes Assistant</div>
+            <ul class="exp-points">
+              <li>Maintained MODX Evolution CMS &amp; FTP asset management</li>
+              <li>Configured 10+ Portrait Explorer touchscreen systems</li>
+              <li>Monthly analytics reports on traffic, search &amp; accessibility</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section id="work">
+        <div class="two-col" style="margin-bottom:2.5rem;">
+          <div>
+            <span class="eyebrow">Selected Work</span>
+            <h2>Platform highlights and delivery work</h2>
+          </div>
+          <p class="lead" style="margin-top:0.5rem;">Key projects across accessibility, performance and CMS delivery throughout my career.</p>
+        </div>
+        <div class="work-grid">
+
+          <div class="work-item">
+            <div class="work-thumb">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="PRI Academy WordPress rebuild" />
+            </div>
+            <div class="work-body">
+              <h3>Digital hub zone</h3>
+              <p>Delivered a block-based WordPress theme enabling editors to create and update pages without developer support.</p>
+              <div class="tags">
+                <span class="tag">WordPress</span>
+                <span class="tag">Gutenberg</span>
+                <span class="tag">CMS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-item">
+            <div class="work-thumb">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="MyPRI performance optimisation" />
+            </div>
+            <div class="work-body">
+              <h3>MyPRI Experience Cloud Optimisation</h3>
+              <p>Improved Lighthouse scores from ~10 to 40+ through image optimisation, layout refactoring and script reduction.</p>
+              <div class="tags">
+                <span class="tag">Salesforce</span>
+                <span class="tag">Performance</span>
+                <span class="tag">Lighthouse</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-item">
+            <div class="work-thumb">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Nature Resources Hub" />
+            </div>
+            <div class="work-body">
+              <h3>Nature Resources Hub &amp; Stewardship Pages</h3>
+              <p>Improved layout structure, navigation and WCAG accessibility across high-traffic initiative sections of the PRI global website.</p>
+              <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">Accessibility</span>
+                <span class="tag">WCAG</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-item">
+            <div class="work-thumb">
+              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=900&q=80" alt="National Portrait Gallery" />
+            </div>
+            <div class="work-body">
+              <h3>National Portrait Gallery Digital Platform</h3>
+              <p>Built microsites in MODX CMS, delivered exhibition content, and contributed to mobile optimisation driving a 14% uplift in site visits.</p>
+              <div class="tags">
+                <span class="tag">MODX</span>
+                <span class="tag">Microsites</span>
+                <span class="tag">SEO</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="contact-grid">
+          <div>
+            <span class="eyebrow">Contact</span>
+            <p class="lead">Open to front-end development and web roles across remote or hybrid teams. Based in London, UK.</p>
+            <div class="contact-card">
+              <div class="contact-list">
+                <div><strong>Email</strong><a href="mailto:lanny.m77@gmail.com">lanny.m77@gmail.com</a></div>
+                <div><strong>Phone</strong><a href="tel:07944533724">07944 533 724</a></div>
+                <div><strong>LinkedIn</strong><a href="https://linkedin.com/in/lanny-madhavan/" target="_blank">linkedin.com/in/lanny-madhavan</a></div>
+                <div><strong>GitHub</strong><a href="https://github.com/lannym" target="_blank">github.com/lannym</a></div>
+                <div><strong>Location</strong>London, UK</div>
+              </div>
+              <div class="cta-group">
+                <a class="btn btn-primary" href="mailto:lanny.m77@gmail.com">Email me</a>
+                <a class="btn btn-secondary" href="https://linkedin.com/in/lanny-madhavan/" target="_blank">LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="form-row form-group">
+              <div>
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Your name" autocomplete="name">
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" placeholder="Project / Role / Hello">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Tell me about your project or opportunity..."></textarea>
+            </div>
+            <button class="btn-submit" id="submitBtn">Send Message</button>
+            <div class="form-success" id="successMsg" role="alert">&#10003; &nbsp; Message sent! I'll get back to you soon.</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>&#169; <span id="year"></span> Lanny Madhavan &#8212; Built for GitHub Pages.</p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
