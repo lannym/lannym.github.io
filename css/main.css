@@ -1,44 +1,36 @@
-@charset "UTF-8";
 :root {
-
-  /* Base */
   --bg: #f9fafb;
   --surface: #ffffff;
   --surface2: #f1f5f9;
   --surface3: #ffffff;
 
-  /* Red accent */
   --accent: #dc2626;
   --accent2: #b91c1c;
 
-  /* Text */
   --text: #0f172a;
   --muted: #64748b;
 
-  /* Borders */
   --border: #e2e8f0;
   --border2: #fecaca;
 
-  /* Sidebar */
   --sidebar-bg: #0f172a;
   --sidebar-brand: #f8fafc;
-  --sidebar-text: rgba(248,250,252,0.7);
+  --sidebar-text: rgba(248, 250, 252, 0.7);
   --sidebar-hover: #dc2626;
 
-  /* Fonts */
-  --heading: 'Outfit', sans-serif;
-  --sans: 'Sora', sans-serif;
-  --mono: 'DM Mono', monospace;
+  --heading: "Outfit", sans-serif;
+  --sans: "Sora", sans-serif;
+  --mono: "DM Mono", monospace;
 
-  /* UI */
   --radius: 999px;
   --radius-card: 20px;
 
-  --shadow: 0 10px 25px rgba(15,23,42,0.06);
-
+  --shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -65,6 +57,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* TOP BAR */
 
 .topbar {
   position: fixed;
@@ -134,6 +128,8 @@ a {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* SIDEBAR */
+
 .overlay {
   display: none;
   position: fixed;
@@ -162,7 +158,7 @@ a {
   transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow-y: auto;
-  border-radius: 0px 50px 50px 0px;
+  border-radius: 0 50px 50px 0;
 }
 
 .sidebar.open {
@@ -219,7 +215,8 @@ a {
   transition: background 0.2s, color 0.2s;
 }
 
-.nav a:hover, .nav a.active {
+.nav a:hover,
+.nav a.active {
   background: var(--sidebar-hover);
   color: var(--sidebar-brand);
 }
@@ -256,6 +253,8 @@ a {
   color: var(--sidebar-brand);
 }
 
+/* LAYOUT */
+
 main {
   padding: 7rem 2.5rem 2.5rem;
   overflow-x: hidden;
@@ -288,7 +287,7 @@ section:first-child {
 }
 
 .eyebrow::before {
-  content: '';
+  content: "";
   width: 1.5rem;
   height: 6px;
   background: var(--accent);
@@ -335,6 +334,8 @@ h3 {
   align-items: start;
 }
 
+/* HERO */
+
 .hero {
   padding: 0 0 5rem;
   border-top: none;
@@ -354,17 +355,29 @@ h3 {
   overflow: hidden;
   background: var(--surface2);
   box-shadow: var(--shadow);
-  aspect-ratio: 3/4;
+  aspect-ratio: 3 / 4;
 }
 
+/*
+  FIX: The slides wrapper must span ALL slides side by side.
+  Using 400% for 4 slides (each slide is then 25% = 1/4 of the wrapper = 100% of the viewport).
+  JS still uses translateX(-N * 100%) but that now means N * (wrapper-width / totalSlides).
+  We override the JS transform via a CSS custom property set by JS instead,
+  keeping the JS as-is and fixing purely in CSS by making each .slide fill
+  the carousel container with flex-shrink:0 + width:100%.
+*/
 .slides {
   display: flex;
   height: 100%;
+  /* Do NOT set a fixed width here — let flex + slide width drive it */
   transition: transform 0.5s ease-in-out;
+  will-change: transform;
 }
 
 .slide {
+  /* Each slide must be exactly as wide as the carousel container */
   min-width: 100%;
+  width: 100%;
   height: 100%;
   position: relative;
   flex-shrink: 0;
@@ -375,27 +388,22 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.slide::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(15, 23, 42, 0.82));
-  pointer-events: none;
+  /* Prevent the image from bleeding across slides */
+  display: block;
 }
 
 .slide-caption {
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+  padding: 3rem 1.5rem 1.5rem;
+  background: linear-gradient(transparent, rgba(26, 8, 0, 0.88));
   z-index: 2;
-  max-width: calc(100% - 6.5rem);
-  padding: 1.5rem;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
 }
 
 .slide.active .slide-caption {
@@ -406,12 +414,15 @@ h3 {
 .slide-caption p {
   font-family: var(--mono);
   font-size: 0.72rem;
-  color: #fff;
-  letter-spacing: 0.1em;
+  color: var(--sidebar-brand);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+  /* Give the caption room — buttons sit bottom-right */
+  max-width: calc(100% - 5.5rem);
+  line-height: 1.5;
 }
 
 .carousel-controls {
@@ -424,60 +435,51 @@ h3 {
 }
 
 .carousel-btn {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2.2rem;
+  height: 2.2rem;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
   cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.14);
-  transition: background 0.2s, transform 0.2s, color 0.2s;
-}
-
-.carousel-btn svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.4;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .carousel-btn:hover {
-  background: var(--accent);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.28);
   transform: translateY(-1px);
-}
-
-.carousel-btn:focus-visible {
-  outline: 3px solid rgba(220, 38, 38, 0.35);
-  outline-offset: 3px;
 }
 
 .carousel-dots {
   position: absolute;
   bottom: 1.4rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 1.5rem;
   display: flex;
-  gap: 0.4rem;
+  gap: 0.45rem;
+  z-index: 10;
 }
 
 .dot {
   width: 7px;
   height: 7px;
-  border: 0;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.55);
-  transition: background 0.3s, width 0.3s;
+  border: none;
+  background: rgba(255, 255, 255, 0.42);
   cursor: pointer;
+  transition: background 0.3s, width 0.3s;
 }
 
 .dot.active {
-  background: #fff;
-  width: 22px;
+  background: #ffffff;
+  width: 20px;
 }
+
+/* BUTTONS */
 
 .btn {
   display: inline-flex;
@@ -519,6 +521,8 @@ h3 {
   flex-wrap: wrap;
 }
 
+/* ABOUT CARDS */
+
 .about-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -549,22 +553,27 @@ h3 {
 }
 
 .card-icon {
-  width: 2.6rem;
-  height: 2.6rem;
-  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.16);
+  display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.9rem;
-  border-radius: 14px;
-  background: var(--surface2);
+  margin-bottom: 1rem;
   color: var(--accent);
 }
 
 .card-icon svg {
   width: 22px;
   height: 22px;
-  stroke-width: 2;
+  color: var(--accent);
+  stroke-width: 1.8;
+  flex-shrink: 0;
 }
+
+/* STATS */
 
 .stats-grid {
   display: grid;
@@ -600,6 +609,15 @@ h3 {
   color: var(--muted);
   line-height: 1.55;
 }
+
+/* Stat ticker — animate from 0 up */
+.stat-ticker {
+  display: inline-block;
+  /* numbers pop in via a subtle scale */
+  transition: transform 0.1s ease;
+}
+
+/* EXPERIENCE */
 
 .exp-grid {
   display: grid;
@@ -639,8 +657,8 @@ h3 {
   font-family: var(--mono);
   font-size: 0.6rem;
   color: var(--accent);
-  background: rgba(212, 56, 13, 0.1);
-  border: 1px solid rgba(212, 56, 13, 0.3);
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
   border-radius: var(--radius);
   padding: 0.15rem 0.55rem;
   margin-left: 0.4rem;
@@ -683,13 +701,15 @@ h3 {
 }
 
 .exp-points li::before {
-  content: '→';
+  content: "→";
   position: absolute;
   left: 0;
   color: var(--accent);
   font-size: 0.65rem;
   top: 0.45rem;
 }
+
+/* WORK */
 
 .work-grid {
   display: grid;
@@ -715,7 +735,7 @@ h3 {
 }
 
 .work-thumb {
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--surface2);
 }
@@ -758,31 +778,18 @@ h3 {
   color: var(--muted);
 }
 
-/* Contact */
+/* CONTACT */
+
 .contact-panel {
-  max-width: 760px;
-  margin: 0 auto;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
-  padding: clamp(2rem, 5vw, 3rem);
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.contact-panel .eyebrow {
-  justify-content: center;
-}
-
-.contact-panel .lead {
-  margin-left: auto;
-  margin-right: auto;
+  padding: 2rem;
 }
 
 .contact-links {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  gap: 0.8rem;
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
@@ -790,16 +797,14 @@ h3 {
 .contact-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.6rem;
-  min-width: 160px;
-  padding: 0.85rem 1.4rem;
-  border-radius: var(--radius);
-  background: var(--surface2);
+  padding: 0.8rem 1.1rem;
   border: 1px solid var(--border);
+  border-radius: var(--radius);
   color: var(--text);
   font-weight: 600;
-  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
 }
 
 .contact-link:hover {
@@ -808,11 +813,19 @@ h3 {
   transform: translateY(-2px);
 }
 
-.contact-link__icon svg {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
+.contact-link__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.contact-link__icon svg {
+  width: 19px;
+  height: 19px;
+  stroke-width: 1.8;
+}
+
+/* FOOTER */
 
 .footer {
   padding: 2rem 0 0.5rem;
@@ -822,18 +835,30 @@ h3 {
   border-top: 1px solid var(--border);
 }
 
+/* RESPONSIVE */
+
 @media (max-width: 860px) {
   main {
     padding: 7rem 1.5rem 1.5rem;
   }
-  .hero-grid, .two-col {
+
+  .hero-grid,
+  .two-col {
     grid-template-columns: 1fr;
   }
-  .about-cards, .stats-grid, .work-grid {
+
+  .about-cards,
+  .stats-grid,
+  .work-grid {
     grid-template-columns: 1fr 1fr;
   }
+
   .exp-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-carousel {
+    max-width: 520px;
   }
 }
 
@@ -841,24 +866,22 @@ h3 {
   .topbar {
     padding: 0.875rem 1.25rem;
   }
-  .about-cards, .stats-grid, .work-grid, .exp-grid, .form-row {
+
+  .about-cards,
+  .stats-grid,
+  .work-grid,
+  .exp-grid {
     grid-template-columns: 1fr;
   }
-}
 
-
-@media (prefers-reduced-motion: reduce) {
-  .slides,
-  .slide-caption,
-  .carousel-btn {
-    transition: none;
-  }
-}
-
-@media (max-width: 560px) {
   .slide-caption {
-    max-width: calc(100% - 5rem);
-    padding: 1.15rem;
+    padding: 3rem 1rem 1.25rem;
+  }
+
+  .slide-caption p {
+    max-width: calc(100% - 4.5rem);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
   }
 
   .carousel-controls {
@@ -867,6 +890,7 @@ h3 {
   }
 
   .carousel-dots {
+    left: 1rem;
     bottom: 1.15rem;
   }
 }
