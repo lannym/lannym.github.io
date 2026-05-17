@@ -64,12 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextBtn  = document.getElementById('nextBtn');
 
   if (slidesEl) {
-    const total = slidesEl.children.length;
-    let cur = 0, timer;
+    const slides = slidesEl.querySelectorAll('.slide');
+    const total = slides.length;
+    let cur = 0;
+    let timer;
+
+    function setActiveSlide() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === cur);
+      });
+
+      document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === cur);
+      });
+    }
 
     for (let i = 0; i < total; i++) {
-      const dot = document.createElement('div');
+      const dot = document.createElement('button');
       dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('type', 'button');
       dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
       dot.addEventListener('click', () => goTo(i));
       dotsEl.appendChild(dot);
@@ -78,19 +91,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function goTo(n) {
       cur = (n + total) % total;
       slidesEl.style.transform = `translateX(-${cur * 100}%)`;
-      document.querySelectorAll('.dot').forEach((d, i) => {
-        d.classList.toggle('active', i === cur);
-      });
+      setActiveSlide();
+
       clearInterval(timer);
       timer = setInterval(() => goTo(cur + 1), 4500);
     }
 
     prevBtn.addEventListener('click', () => goTo(cur - 1));
     nextBtn.addEventListener('click', () => goTo(cur + 1));
+
+    slides[0].classList.add('active');
     timer = setInterval(() => goTo(cur + 1), 4500);
   }
-
-  // ── CONTACT FORM ─────────────────────────────────────────
+  
+// ── CONTACT FORM ─────────────────────────────────────────
   const submitBtn  = document.getElementById('submitBtn');
   const successMsg = document.getElementById('successMsg');
 
