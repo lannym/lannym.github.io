@@ -397,7 +397,7 @@ h3 {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 3rem 1.5rem 1.5rem;
+  padding: 3rem 1.5rem 3.5rem;
   background: linear-gradient(transparent, rgba(26, 8, 0, 0.88));
   z-index: 2;
   opacity: 0;
