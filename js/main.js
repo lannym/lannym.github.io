@@ -4,11 +4,11 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── HAMBURGER NAV (desktop + mobile) ─────────────────────
-  const sidebar    = document.getElementById('sidebar');
-  const overlay    = document.getElementById('overlay');
+  // ── HAMBURGER NAV ────────────────────────────────────────
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
   const menuToggle = document.getElementById('menuToggle');
-  const closeBtn   = document.getElementById('closeBtn');
+  const closeBtn = document.getElementById('closeBtn');
 
   function openMenu() {
     sidebar.classList.add('open');
@@ -24,21 +24,28 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.setAttribute('aria-expanded', 'false');
   }
 
-  menuToggle.addEventListener('click', () => {
-    sidebar.classList.contains('open') ? closeMenu() : openMenu();
-  });
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeMenu() : openMenu();
+    });
+  }
 
-  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-  overlay.addEventListener('click', closeMenu);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMenu);
+  }
 
-  // Close on nav link click
+  if (overlay) {
+    overlay.addEventListener('click', closeMenu);
+  }
+
   document.querySelectorAll('.nav a').forEach(link => {
     link.addEventListener('click', closeMenu);
   });
 
-  // Close on Escape key
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMenu();
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      closeMenu();
+    }
   });
 
   // ── ACTIVE NAV ON SCROLL ─────────────────────────────────
@@ -48,86 +55,108 @@ document.addEventListener('DOMContentLoaded', () => {
   const sectionObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        navLinks.forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        navLinks.forEach(link => {
+          link.classList.toggle(
+            'active',
+            link.getAttribute('href') === '#' + entry.target.id
+          );
         });
       }
     });
-  }, { threshold: 0.25 });
+  }, {
+    threshold: 0.25
+  });
 
-  sections.forEach(s => sectionObserver.observe(s));
+  sections.forEach(section => sectionObserver.observe(section));
 
   // ── CAROUSEL ─────────────────────────────────────────────
   const slidesEl = document.getElementById('slides');
-  const dotsEl   = document.getElementById('dots');
-  const prevBtn  = document.getElementById('prevBtn');
-  const nextBtn  = document.getElementById('nextBtn');
+  const dotsEl = document.getElementById('dots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
 
-  if (slidesEl) {
-    const slides = slidesEl.querySelectorAll('.slide');
-    const total = slides.length;
-    let cur = 0;
+  if (slidesEl && dotsEl) {
+    const slides = Array.from(slidesEl.querySelectorAll('.slide'));
+    const totalSlides = slides.length;
+    let currentSlide = 0;
     let timer;
 
-    function setActiveSlide() {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === cur);
+    function updateCarousel() {
+      slidesEl.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
       });
 
-      document.querySelectorAll('.dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === cur);
+      dotsEl.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+        dot.setAttribute('aria-current', index === currentSlide ? 'true' : 'false');
       });
     }
 
-    for (let i = 0; i < total; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.setAttribute('type', 'button');
-      dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-      dot.addEventListener('click', () => goTo(i));
-      dotsEl.appendChild(dot);
+    function goToSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      updateCarousel();
+      restartTimer();
     }
 
-    function goTo(n) {
-      cur = (n + total) % total;
-      slidesEl.style.transform = `translateX(-${cur * 100}%)`;
-      setActiveSlide();
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
 
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function startTimer() {
+      timer = setInterval(() => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateCarousel();
+      }, 4500);
+    }
+
+    function restartTimer() {
       clearInterval(timer);
-      timer = setInterval(() => goTo(cur + 1), 4500);
+      startTimer();
     }
 
-    prevBtn.addEventListener('click', () => goTo(cur - 1));
-    nextBtn.addEventListener('click', () => goTo(cur + 1));
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (index === 0 ? ' active' : '');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+      dot.setAttribute('aria-current', index === 0 ? 'true' : 'false');
+
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+      });
+
+      dotsEl.appendChild(dot);
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', prevSlide);
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', nextSlide);
+    }
 
     slides[0].classList.add('active');
-    timer = setInterval(() => goTo(cur + 1), 4500);
-  }
-  
-// ── CONTACT FORM ─────────────────────────────────────────
-  const submitBtn  = document.getElementById('submitBtn');
-  const successMsg = document.getElementById('successMsg');
-
-  if (submitBtn) {
-    submitBtn.addEventListener('click', e => {
-      e.preventDefault();
-      const name    = document.getElementById('name').value.trim();
-      const email   = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-
-      if (!name || !email || !message) {
-        alert('Please fill in your name, email and message.');
-        return;
-      }
-
-      successMsg.style.display = 'block';
-      submitBtn.textContent    = 'Sent ✓';
-      submitBtn.disabled       = true;
-    });
+    updateCarousel();
+    startTimer();
   }
 
   // ── FOOTER YEAR ──────────────────────────────────────────
   const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  // ── LUCIDE ICONS ─────────────────────────────────────────
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 
 });

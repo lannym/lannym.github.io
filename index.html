@@ -3,31 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Lanny Madhavan, Front-End Developer specialising in accessibility, CMS platforms and performance." />
-  <title> Front-End Developement</title>
 
+  <meta name="description" content="Lanny Madhavan — Front-End Developer specialising in accessibility, CMS platforms and performance." />
+  <title>Front-End Development and CMS platforms</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Sora:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-
+  <!-- Styles -->
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
+  <!-- TOP BAR -->
   <header class="topbar">
     <a class="topbar-brand" href="#home">LM.</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+
+    <button
+      class="menu-toggle"
+      id="menuToggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="sidebar">
       <span></span>
       <span></span>
       <span></span>
     </button>
   </header>
 
+  <!-- Overlay -->
   <div class="overlay" id="overlay" aria-hidden="true"></div>
 
+  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar" aria-label="Site navigation">
     <div class="sidebar-close">
       <button id="closeBtn" aria-label="Close navigation">Close ✕</button>
@@ -35,6 +48,7 @@
 
     <div>
       <div class="brand">LM.</div>
+
       <nav class="nav" aria-label="Main navigation">
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
@@ -45,7 +59,10 @@
     </div>
 
     <div class="sidebar-footer">
-      <p class="sidebar-bio">Front-end developer specialising in accessibility, CMS platforms, performance and user-focused digital experiences.</p>
+      <p class="sidebar-bio">
+        Front-end developer specialising in accessibility, CMS platforms, performance and user-focused digital experiences.
+      </p>
+
       <div class="socials">
         <a href="https://github.com/lannym" target="_blank" rel="noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/lanny-madhavan/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -56,22 +73,30 @@
   <main>
     <div class="container">
 
+      <!-- HERO -->
       <section class="hero" id="home">
         <div class="hero-grid">
+
           <div>
             <span class="eyebrow">Front-End Developer · Accessibility · CMS · Performance</span>
+
             <h1>Building the web with purpose and precision.</h1>
-            <p class="lead">Over a decade of experience crafting accessible, high-performance websites. I work across HTML, CSS, JavaScript and CMS ecosystems including WordPress, Webvision and MODX.</p>
+
+            <p class="lead">
+Over a decade of experience crafting accessible, high-performance websites. I work across HTML, CSS, JavaScript and CMS ecosystems including WordPress, Webvision and MODX.
+
+            </p>
+
             <div class="cta-group">
               <a class="btn btn-primary" href="#work">View my work</a>
               <a class="btn btn-secondary" href="#contact">Get in touch</a>
             </div>
           </div>
 
-          <div class="hero-carousel">
-            <div class="slides" id="slides">
+          <div class="hero-carousel" aria-label="Portfolio highlights carousel">
+            <div class="slides" id="slides" aria-live="polite">
 
-              <div class="slide">
+              <div class="slide active">
                 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Developer workspace">
                 <div class="slide-caption">
                   <p>Front-End Development</p>
@@ -101,46 +126,61 @@
 
             </div>
 
-            <div class="carousel-dots" id="dots"></div>
+            <div class="carousel-dots" id="dots" aria-label="Carousel slide navigation"></div>
 
             <div class="carousel-controls">
-              <button class="carousel-btn" id="prevBtn" aria-label="Previous slide">&#8249;</button>
-              <button class="carousel-btn" id="nextBtn" aria-label="Next slide">&#8250;</button>
+              <button class="carousel-btn" id="prevBtn" type="button" aria-label="Previous slide">&#8249;</button>
+              <button class="carousel-btn" id="nextBtn" type="button" aria-label="Next slide">&#8250;</button>
             </div>
           </div>
+
         </div>
       </section>
 
+      <!-- ABOUT -->
       <section id="about">
         <div class="two-col">
+
           <div>
             <span class="eyebrow">About</span>
+
             <h2>Accessibility, structure and performance at the core</h2>
-            <p class="lead">I build responsive, accessible websites meeting WCAG standards while improving performance, SEO and overall user experience. Comfortable across the full website lifecycle, from development to CMS governance and Agile cross-team delivery.</p>
+
+            <p class="lead">
+              I build responsive, accessible websites meeting WCAG standards while improving performance, SEO and overall user experience. Comfortable across the full website lifecycle — from development to CMS governance and Agile cross-team delivery.
+            </p>
           </div>
 
           <div class="about-cards">
 
             <div class="card">
-              <div class="card-icon"><i data-lucide="code-2"></i></div>
+              <div class="card-icon">
+                <i data-lucide="code-2" aria-hidden="true"></i>
+              </div>
               <h3>Front-End Dev</h3>
               <p>HTML5, CSS3, SCSS, JavaScript ES6+, jQuery, responsive and mobile-first development.</p>
             </div>
 
             <div class="card">
-              <div class="card-icon"><i data-lucide="layers-3"></i></div>
+              <div class="card-icon">
+                <i data-lucide="layers-3" aria-hidden="true"></i>
+              </div>
               <h3>CMS &amp; Platforms</h3>
               <p>WordPress, Webvision, MODX Evolution/Revolution and Salesforce Experience Cloud.</p>
             </div>
 
             <div class="card">
-              <div class="card-icon"><i data-lucide="accessibility"></i></div>
+              <div class="card-icon">
+                <i data-lucide="accessibility" aria-hidden="true"></i>
+              </div>
               <h3>Accessibility</h3>
               <p>WCAG standards, SiteImprove audits, semantic HTML and thorough cross-browser testing.</p>
             </div>
 
             <div class="card">
-              <div class="card-icon"><i data-lucide="gauge"></i></div>
+              <div class="card-icon">
+                <i data-lucide="gauge" aria-hidden="true"></i>
+              </div>
               <h3>Performance &amp; SEO</h3>
               <p>Lighthouse audits, image optimisation, SEO best practice and cleaner digital journeys.</p>
             </div>
@@ -149,106 +189,117 @@
         </div>
       </section>
 
+      <!-- STATS -->
       <section aria-label="Key statistics">
         <div class="stats-grid">
+
           <div class="stat">
             <strong>10+</strong>
             <p>Years building and improving websites and digital platforms</p>
           </div>
+
           <div class="stat">
             <strong>5k+</strong>
             <p>Institutional investor signatories served via PRI digital platforms</p>
           </div>
+
           <div class="stat">
             <strong>4.5M</strong>
             <p>Unique users reached through NPG digital platform work</p>
           </div>
+
         </div>
       </section>
 
+      <!-- EXPERIENCE -->
       <section id="experience">
         <span class="eyebrow">Experience</span>
-        <h2 class="section-title">Roles across public-facing digital platforms</h2>
+
+        <h2 style="margin-bottom:2rem;">Roles across public-facing digital platforms</h2>
 
         <div class="exp-grid">
 
           <div class="exp-card">
-            <span class="exp-date">Feb 2023 - Present <span class="exp-current">Now</span></span>
+            <span class="exp-date">Feb 2023 — Present <span class="exp-current">Now</span></span>
             <div class="exp-org">Principles for Responsible Investment</div>
             <div class="exp-title">Senior Website Associate</div>
             <ul class="exp-points">
               <li>Accessible pages for 5,000+ institutional investors globally</li>
               <li>Led PRI Academy block-based WordPress rebuild</li>
               <li>Lighthouse scores improved from ~10 to 40+ on Salesforce pages</li>
-              <li>GitHub branching and multi-org deployments to production</li>
+              <li>GitHub branching &amp; multi-org deployments to production</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <span class="exp-date">Oct 2021 - Feb 2023</span>
+            <span class="exp-date">Oct 2021 — Feb 2023</span>
             <div class="exp-org">Principles for Responsible Investment</div>
             <div class="exp-title">Website Associate</div>
             <ul class="exp-points">
               <li>Responsive pages to WCAG and SEO standards</li>
-              <li>Improved Webvision CMS templates and editorial workflows</li>
-              <li>Delivered Advance Stewardship, PRI Awards and climate content</li>
+              <li>Improved Webvision CMS templates &amp; editorial workflows</li>
+              <li>Delivered Advance Stewardship, PRI Awards &amp; climate content</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <span class="exp-date">Nov 2020 - Oct 2021</span>
+            <span class="exp-date">Nov 2020 — Oct 2021</span>
             <div class="exp-org">Principles for Responsible Investment</div>
             <div class="exp-title">Website Assistant</div>
             <ul class="exp-points">
-              <li>Day-to-day updates maintaining brand and accessibility</li>
+              <li>Day-to-day updates maintaining brand &amp; accessibility</li>
               <li>Built responsive pages in Webvision CMS</li>
               <li>Implemented site search to improve content discovery</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <span class="exp-date">Apr 2016 - Jun 2020</span>
+            <span class="exp-date">Apr 2016 — Jun 2020</span>
             <div class="exp-org">National Portrait Gallery</div>
             <div class="exp-title">New Media Officer</div>
             <ul class="exp-points">
-              <li>Responsive pages and microsites via MODX for millions of visitors</li>
+              <li>Responsive pages &amp; microsites via MODX for millions of visitors</li>
               <li>WCAG accessibility improvements via SiteImprove audits</li>
               <li>Designed responsive events calendar for exhibitions</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <span class="exp-date">Apr 2013 - Apr 2016</span>
+            <span class="exp-date">Apr 2013 — Apr 2016</span>
             <div class="exp-org">National Portrait Gallery</div>
             <div class="exp-title">New Media Assistant</div>
             <ul class="exp-points">
               <li>360+ event pages per quarter within two-week cycles</li>
-              <li>Contributed to 14% visit increase and 4.5M unique users</li>
+              <li>Contributed to 14% visit increase — 4.5M unique users</li>
               <li>Grew newsletter subscriptions via on-site prompts</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <span class="exp-date">Sep 2012 - Apr 2013</span>
+            <span class="exp-date">Sep 2012 — Apr 2013</span>
             <div class="exp-org">National Portrait Gallery</div>
             <div class="exp-title">Digital Programmes Assistant</div>
             <ul class="exp-points">
-              <li>Maintained MODX Evolution CMS and FTP asset management</li>
+              <li>Maintained MODX Evolution CMS &amp; FTP asset management</li>
               <li>Configured 10+ Portrait Explorer touchscreen systems</li>
-              <li>Monthly analytics reports on traffic, search and accessibility</li>
+              <li>Monthly analytics reports on traffic, search &amp; accessibility</li>
             </ul>
           </div>
 
         </div>
       </section>
 
+      <!-- WORK -->
       <section id="work">
-        <div class="two-col section-intro">
+        <div class="two-col" style="margin-bottom:2.5rem;">
           <div>
             <span class="eyebrow">Selected Work</span>
             <h2>Platform highlights and delivery work</h2>
           </div>
-          <p class="lead">Key projects across accessibility, performance and CMS delivery throughout my career.</p>
+
+          <p class="lead" style="margin-top:0.5rem;">
+            Key projects across accessibility, performance and CMS delivery throughout my career.
+          </p>
         </div>
 
         <div class="work-grid">
@@ -257,9 +308,11 @@
             <div class="work-thumb">
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="PRI Academy WordPress rebuild">
             </div>
+
             <div class="work-body">
               <h3>PRI Academy WordPress Rebuild</h3>
               <p>Delivered a block-based WordPress theme enabling editors to create and update pages without developer support.</p>
+
               <div class="tags">
                 <span class="tag">WordPress</span>
                 <span class="tag">Gutenberg</span>
@@ -270,11 +323,13 @@
 
           <div class="work-item">
             <div class="work-thumb">
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Digital Hub Zone">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Digital Hub Zone website">
             </div>
+
             <div class="work-body">
               <h3>Digital Hub Zone</h3>
-              <p>Created a personal digital website focused on web development, SEO, UX, content strategy and practical digital guidance.</p>
+              <p>Built and developed a personal digital platform focused on web development, SEO, digital tools and practical front-end learning.</p>
+
               <div class="tags">
                 <span class="tag">WordPress</span>
                 <span class="tag">SEO</span>
@@ -285,11 +340,13 @@
 
           <div class="work-item">
             <div class="work-thumb">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Nature Resources Hub and Stewardship Pages">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Nature Resources Hub">
             </div>
+
             <div class="work-body">
               <h3>Nature Resources Hub &amp; Stewardship Pages</h3>
-              <p>Improved layout structure, navigation and WCAG accessibility across high-traffic initiative sections of the PRI global website.</p>
+              <p>Improved layout structure, navigation and WCAG accessibility across high-traffic initiative sections using Webvision CMS.</p>
+
               <div class="tags">
                 <span class="tag">Webvision CMS</span>
                 <span class="tag">HTML</span>
@@ -301,11 +358,13 @@
 
           <div class="work-item">
             <div class="work-thumb">
-              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=900&q=80" alt="National Portrait Gallery">
+              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=900&q=80" alt="National Portrait Gallery digital platform">
             </div>
+
             <div class="work-body">
               <h3>National Portrait Gallery Digital Platform</h3>
-              <p>Built microsites in MODX CMS, delivered exhibition content, and supported platform work across MODX Evolution, MODX Revolution and migration activity.</p>
+              <p>Built microsites in MODX Evolution and Revolution, delivered exhibition content, and contributed to CMS migration and mobile optimisation work.</p>
+
               <div class="tags">
                 <span class="tag">MODX Evolution</span>
                 <span class="tag">MODX Revolution</span>
@@ -317,21 +376,39 @@
         </div>
       </section>
 
+      <!-- CONTACT -->
       <section id="contact">
-        <div class="contact-simple">
+        <div class="contact-panel">
           <span class="eyebrow">Contact</span>
-          <h2>Let’s connect</h2>
-          <p class="lead">Open to front-end development and web roles across remote or hybrid teams. Based in London, UK.</p>
 
-          <div class="contact-actions">
-            <a class="btn btn-primary" href="https://www.linkedin.com/in/lanny-madhavan/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="btn btn-secondary" href="https://github.com/lannym" target="_blank" rel="noreferrer">GitHub</a>
+          <h2>Let’s connect</h2>
+
+          <p class="lead">
+            Open to front-end development and web roles across remote or hybrid teams. Based in London, UK.
+          </p>
+
+          <div class="contact-links" aria-label="Social links">
+
+            <a class="contact-link" href="https://linkedin.com/in/lanny-madhavan/" target="_blank" rel="noreferrer">
+              <span class="contact-link__icon">
+                <i data-lucide="linkedin" aria-hidden="true"></i>
+              </span>
+              <span>LinkedIn</span>
+            </a>
+
+            <a class="contact-link" href="https://github.com/lannym" target="_blank" rel="noreferrer">
+              <span class="contact-link__icon">
+                <i data-lucide="github" aria-hidden="true"></i>
+              </span>
+              <span>GitHub</span>
+            </a>
+
           </div>
         </div>
       </section>
 
       <footer class="footer">
-        <p>&copy; <span id="year"></span> Lanny Madhavan. Built for GitHub Pages.</p>
+        <p>&#169; <span id="year"></span> Lanny Madhavan — Built for GitHub Pages.</p>
       </footer>
 
     </div>
