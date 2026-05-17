@@ -13,6 +13,9 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/main.css">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -68,8 +71,8 @@
         <div class="hero-grid">
           <div>
             <span class="eyebrow">Front-End Developer · Accessibility · CMS · Performance</span>
-            <h1>Building the web with purpose.</h1>
-            <p class="lead">Over a decade of experience crafting accessible, high-performance websites. I work across HTML, CSS, JavaScript and CMS ecosystems including WordPress, Webvision, MODX and Salesforce Experience Cloud.</p>
+            <h1>Building the web with purpose and precision.</h1>
+            <p class="lead">I'm Lanny Madhavan — a front-end developer with over a decade of experience crafting accessible, high-performance websites. I work across HTML, CSS, JavaScript and CMS ecosystems including WordPress, Webvision, MODX and Salesforce Experience Cloud.</p>
             <div class="cta-group">
               <a class="btn btn-primary" href="#work">View my work</a>
               <a class="btn btn-secondary" href="#contact">Get in touch</a>
@@ -77,8 +80,8 @@
           </div>
 
           <div class="hero-carousel">
-            <div class="slides" id="slides">
-              <div class="slide">
+            <div class="slides" id="slides" aria-live="polite">
+              <div class="slide active">
                 <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Developer workspace" />
                 <div class="slide-caption"><p>Front-End Development</p></div>
               </div>
@@ -114,22 +117,22 @@
           </div>
           <div class="about-cards">
             <div class="card">
-              <div class="card-icon">⟨/⟩</div>
+              <div class="card-icon" data-lucide="code-2" aria-hidden="true"></div>
               <h3>Front-End Dev</h3>
               <p>HTML5, CSS3, SCSS, JavaScript ES6+, jQuery, responsive and mobile-first development.</p>
             </div>
             <div class="card">
-              <div class="card-icon">⊞</div>
+              <div class="card-icon" data-lucide="layout-template" aria-hidden="true"></div>
               <h3>CMS &amp; Platforms</h3>
-              <p>WordPress, Webvision, MODX Evolution/Revolution.</p>
+              <p>WordPress, Webvision, MODX Evolution/Revolution and Salesforce Experience Cloud.</p>
             </div>
             <div class="card">
-              <div class="card-icon">♿</div>
+              <div class="card-icon" data-lucide="accessibility" aria-hidden="true"></div>
               <h3>Accessibility</h3>
               <p>WCAG standards, SiteImprove audits, semantic HTML and thorough cross-browser testing.</p>
             </div>
             <div class="card">
-              <div class="card-icon">◎</div>
+              <div class="card-icon" data-lucide="gauge" aria-hidden="true"></div>
               <h3>Performance &amp; SEO</h3>
               <p>Lighthouse audits, image optimisation, SEO best practice and cleaner digital journeys.</p>
             </div>
@@ -247,7 +250,7 @@
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="PRI Academy WordPress rebuild" />
             </div>
             <div class="work-body">
-              <h3>Digital hub zone</h3>
+              <h3>PRI Academy WordPress Rebuild</h3>
               <p>Delivered a block-based WordPress theme enabling editors to create and update pages without developer support.</p>
               <div class="tags">
                 <span class="tag">WordPress</span>
@@ -307,46 +310,21 @@
 
       <!-- CONTACT -->
       <section id="contact">
-        <div class="contact-grid">
-          <div>
-            <span class="eyebrow">Contact</span>
-            <p class="lead">Open to front-end development and web roles across remote or hybrid teams. Based in London, UK.</p>
-            <div class="contact-card">
-              <div class="contact-list">
-                <div><strong>Email</strong><a href="mailto:lanny.m77@gmail.com">lanny.m77@gmail.com</a></div>
-                <div><strong>Phone</strong><a href="tel:07944533724">07944 533 724</a></div>
-                <div><strong>LinkedIn</strong><a href="https://linkedin.com/in/lanny-madhavan/" target="_blank">linkedin.com/in/lanny-madhavan</a></div>
-                <div><strong>GitHub</strong><a href="https://github.com/lannym" target="_blank">github.com/lannym</a></div>
-                <div><strong>Location</strong>London, UK</div>
-              </div>
-              <div class="cta-group">
-                <a class="btn btn-primary" href="mailto:lanny.m77@gmail.com">Email me</a>
-                <a class="btn btn-secondary" href="https://linkedin.com/in/lanny-madhavan/" target="_blank">LinkedIn</a>
-              </div>
-            </div>
-          </div>
+        <div class="contact-panel">
+          <span class="eyebrow">Contact</span>
+          <h2>Let’s connect</h2>
+          <p class="lead">Open to front-end development and web roles across remote or hybrid teams. Based in London, UK.</p>
 
-          <div>
-            <div class="form-row form-group">
-              <div>
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Your name" autocomplete="name">
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" placeholder="Project / Role / Hello">
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" placeholder="Tell me about your project or opportunity..."></textarea>
-            </div>
-            <button class="btn-submit" id="submitBtn">Send Message</button>
-            <div class="form-success" id="successMsg" role="alert">&#10003; &nbsp; Message sent! I'll get back to you soon.</div>
+          <div class="contact-links" aria-label="Social links">
+            <a class="contact-link" href="https://linkedin.com/in/lanny-madhavan/" target="_blank" rel="noreferrer">
+              <span class="contact-link__icon" data-lucide="linkedin" aria-hidden="true"></span>
+              <span>LinkedIn</span>
+            </a>
+
+            <a class="contact-link" href="https://github.com/lannym" target="_blank" rel="noreferrer">
+              <span class="contact-link__icon" data-lucide="github" aria-hidden="true"></span>
+              <span>GitHub</span>
+            </a>
           </div>
         </div>
       </section>
