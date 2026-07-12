@@ -596,30 +596,6 @@ textarea { resize: vertical; min-height: 120px; }
   border: 0;
 }
 
-.skip-link {
-  position: fixed;
-  top: 1rem;
-  left: 50%;
-  z-index: 100;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  color: #ffffff;
-  background: #0f172a;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  transform: translate(-50%, -200%);
-}
-
-.skip-link:focus-visible {
-  width: auto;
-  height: auto;
-  overflow: visible;
-  clip-path: none;
-  transform: translate(-50%, 0);
-}
-
 .external-link-icon {
   width: 0.9em;
   height: 0.9em;
