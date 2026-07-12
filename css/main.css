@@ -981,8 +981,8 @@ section[id] {
 
 .dot {
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: 28px;
+  height: 28px;
   background: transparent;
 }
 
@@ -1000,12 +1000,12 @@ section[id] {
 }
 
 .dot.active {
-  width: 44px;
+  width: 28px;
   background: transparent;
 }
 
 .dot.active::after {
-  width: 22px;
+  width: 18px;
   background: #ffffff;
 }
 
