@@ -181,12 +181,14 @@ a {
   cursor: pointer;
   font-family: var(--sans);
   font-size: 0.8rem;
-  transition: border-color 0.2s, color 0.2s;
+  min-height: 44px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .sidebar-close button:hover {
-  border-color: var(--sidebar-brand);
-  color: var(--sidebar-brand);
+  background: var(--sidebar-hover);
+  border-color: var(--sidebar-hover);
+  color: #ffffff;
 }
 
 .brand {
@@ -212,13 +214,18 @@ a {
   text-transform: uppercase;
   padding: 0.65rem 1rem;
   border-radius: var(--radius);
-  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
 }
 
 .nav a:hover,
 .nav a.active {
   background: var(--sidebar-hover);
   color: var(--sidebar-brand);
+}
+
+.nav a:hover {
+  transform: translateX(4px);
 }
 
 .sidebar-footer {
@@ -245,12 +252,14 @@ a {
   border-radius: var(--radius);
   font-size: 0.78rem;
   color: var(--sidebar-text);
-  transition: border-color 0.2s, color 0.2s;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .socials a:hover {
-  border-color: var(--sidebar-brand);
-  color: var(--sidebar-brand);
+  background: var(--sidebar-hover);
+  border-color: var(--sidebar-hover);
+  color: #ffffff;
 }
 
 /* LAYOUT */
