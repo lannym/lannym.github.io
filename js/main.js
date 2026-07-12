@@ -9,19 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('overlay');
   const menuToggle = document.getElementById('menuToggle');
   const closeBtn = document.getElementById('closeBtn');
+  const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
   function openMenu() {
+    sidebar.removeAttribute('inert');
+    sidebar.setAttribute('aria-hidden', 'false');
     sidebar.classList.add('open');
     overlay.classList.add('visible');
     menuToggle.classList.add('open');
     menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Close navigation');
+    document.body.classList.add('menu-open');
+    closeBtn.focus();
   }
 
-  function closeMenu() {
+  function closeMenu(restoreFocus = false) {
+    if (!sidebar.classList.contains('open')) return;
     sidebar.classList.remove('open');
     overlay.classList.remove('visible');
     menuToggle.classList.remove('open');
     menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open navigation');
+    sidebar.setAttribute('aria-hidden', 'true');
+    sidebar.setAttribute('inert', '');
+    document.body.classList.remove('menu-open');
+    if (restoreFocus) menuToggle.focus();
   }
 
   if (menuToggle) {
@@ -31,20 +43,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   if (closeBtn) {
-    closeBtn.addEventListener('click', closeMenu);
+    closeBtn.addEventListener('click', () => closeMenu(true));
   }
 
   if (overlay) {
-    overlay.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', () => closeMenu(true));
   }
 
   document.querySelectorAll('.nav a').forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => closeMenu(true));
   });
 
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') {
-      closeMenu();
+    if (event.key === 'Escape' && sidebar.classList.contains('open')) {
+      closeMenu(true);
+    }
+
+    if (event.key === 'Tab' && sidebar.classList.contains('open')) {
+      const focusable = Array.from(sidebar.querySelectorAll(focusableSelector));
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     }
   });
 
@@ -56,10 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navLinks.forEach(link => {
-          link.classList.toggle(
-            'active',
-            link.getAttribute('href') === '#' + entry.target.id
-          );
+          const isCurrent = link.getAttribute('href') === '#' + entry.target.id;
+          link.classList.toggle('active', isCurrent);
+          if (isCurrent) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
         });
       }
     });
@@ -86,12 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const dotsEl   = document.getElementById('dots');
   const prevBtn  = document.getElementById('prevBtn');
   const nextBtn  = document.getElementById('nextBtn');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const carouselStatus = document.getElementById('carouselStatus');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (slidesEl && dotsEl && carousel) {
     const slides      = Array.from(slidesEl.querySelectorAll('.slide'));
     const totalSlides = slides.length;
     let currentSlide  = 0;
     let timer;
+    let userPaused = reduceMotion.matches;
+    let interactionPaused = false;
 
     function updateCarousel() {
       // Each slide is 100% of the carousel width, so shifting by
@@ -99,7 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
       slidesEl.style.transform = `translateX(-${currentSlide * 100}%)`;
 
       slides.forEach((slide, index) => {
-        slide.classList.toggle('active', index === currentSlide);
+        const isActive = index === currentSlide;
+        slide.classList.toggle('active', isActive);
+        slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
       });
 
       dotsEl.querySelectorAll('.dot').forEach((dot, index) => {
@@ -108,16 +141,22 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    function goToSlide(index) {
+    function goToSlide(index, announce = true) {
       currentSlide = (index + totalSlides) % totalSlides;
       updateCarousel();
       restartTimer();
+      if (announce && carouselStatus) {
+        const caption = slides[currentSlide].querySelector('.slide-caption p').textContent;
+        carouselStatus.textContent = `Slide ${currentSlide + 1} of ${totalSlides}: ${caption}`;
+      }
     }
 
     function nextSlide() { goToSlide(currentSlide + 1); }
     function prevSlide() { goToSlide(currentSlide - 1); }
 
     function startTimer() {
+      if (userPaused || interactionPaused || reduceMotion.matches || document.hidden) return;
+      clearInterval(timer);
       timer = setInterval(() => {
         currentSlide = (currentSlide + 1) % totalSlides;
         updateCarousel();
@@ -127,6 +166,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function restartTimer() {
       clearInterval(timer);
       startTimer();
+    }
+
+    function updatePauseButton() {
+      if (!pauseBtn) return;
+      pauseBtn.textContent = userPaused ? '▶' : 'Ⅱ';
+      pauseBtn.setAttribute('aria-label', userPaused ? 'Play carousel' : 'Pause carousel');
+      pauseBtn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+    }
+
+    function setInteractionPaused(paused) {
+      interactionPaused = paused;
+      if (paused) clearInterval(timer);
+      else startTimer();
     }
 
     // Build dots
@@ -142,6 +194,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (prevBtn) prevBtn.addEventListener('click', prevSlide);
     if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', () => {
+        userPaused = !userPaused;
+        if (userPaused) clearInterval(timer);
+        else startTimer();
+        updatePauseButton();
+      });
+    }
+
+    carousel.addEventListener('mouseenter', () => setInteractionPaused(true));
+    carousel.addEventListener('mouseleave', () => setInteractionPaused(false));
+    carousel.addEventListener('focusin', () => setInteractionPaused(true));
+    carousel.addEventListener('focusout', event => {
+      if (!carousel.contains(event.relatedTarget)) setInteractionPaused(false);
+    });
+    document.addEventListener('visibilitychange', restartTimer);
+    reduceMotion.addEventListener('change', event => {
+      if (event.matches) clearInterval(timer);
+      else startTimer();
+    });
 
     // Touch / swipe support
     let touchStartX = 0;
@@ -157,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     slides[0].classList.add('active');
     updateCarousel();
+    updatePauseButton();
     startTimer();
   }
 
@@ -192,6 +265,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const isKilo      = el.dataset.displaySuffix === 'k+'; // 5000 → show as 5k+
     const duration    = 1800; // ms
     const startTime   = performance.now();
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     // Easing: ease-out cubic
     function easeOut(t) {
