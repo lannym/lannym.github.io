@@ -734,12 +734,12 @@ h3 {
   transition: border-color 0.2s, transform 0.2s;
 }
 
-.work-item:hover {
+.work-item--linked:hover {
   border-color: var(--accent);
   transform: translateY(-3px);
 }
 
-.work-item:hover .work-thumb img {
+.work-item--linked:hover .work-thumb img {
   transform: scale(1.04);
 }
 
@@ -747,6 +747,7 @@ h3 {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--surface2);
+  position: relative;
 }
 
 .work-thumb img {
@@ -769,6 +770,32 @@ h3 {
   color: var(--muted);
   line-height: 1.65;
   margin-bottom: 1rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.project-link:hover { color: var(--accent2); }
+
+.image-note {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.82);
+  color: #ffffff;
+  font-size: 0.67rem;
+  line-height: 1.4;
 }
 
 .tags {
