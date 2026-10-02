@@ -1057,7 +1057,8 @@ h3 {
   }
 
   .hero-carousel {
-    max-width: 520px;
+    width: 100%;
+    max-width: none;
   }
 }
 

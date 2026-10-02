@@ -594,6 +594,7 @@ textarea { resize: vertical; min-height: 120px; }
   .hero-grid, .two-col, .contact-grid { grid-template-columns: 1fr; }
   .about-cards, .stats-grid, .work-grid { grid-template-columns: 1fr 1fr; }
   .exp-grid { grid-template-columns: 1fr 1fr; }
+  .hero-carousel { width: 100%; max-width: none; }
 }
 
 @media (max-width: 560px) {
