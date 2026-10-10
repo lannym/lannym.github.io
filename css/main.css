@@ -4,7 +4,7 @@
   --surface2: #f1f5f9;
   --surface3: #ffffff;
 
-  --accent: #dc2626;
+  --accent: #9a1b1b;
   --accent2: #b91c1c;
 
   --text: #0f172a;
@@ -286,6 +286,7 @@ section:first-child {
 .eyebrow {
   font-family: var(--mono);
   font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent);

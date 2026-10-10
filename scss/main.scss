@@ -11,7 +11,7 @@
   --bg:      #fffaf5;
   --surface: #fff0e8;
   --surface2:#fae0d0;
-  --accent:  #d4380d;
+  --accent:  #9a1b1b;
   --accent2: #a82d0a;
   --text:    #1a0800;
   --muted:   #7a4020;
@@ -228,6 +228,7 @@ section {
 .eyebrow {
   font-family: var(--mono);
   font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent);
