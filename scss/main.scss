@@ -323,20 +323,9 @@ h3 {
   p {
     font-family: var(--mono);
     font-size: 0.72rem;
-    color: #fff;
-    letter-spacing: 0.08em;
+    color: var(--sidebar-brand);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
-    max-width: calc(100% - 5.5rem);
-    line-height: 1.5;
-    background: rgba(0, 0, 0, 0.55);
-    padding: 7px 20px;
-    border-radius: 20px;
-    display: inline-block;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
   }
 }
 
