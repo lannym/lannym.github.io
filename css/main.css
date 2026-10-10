@@ -298,7 +298,7 @@ section:first-child {
 .eyebrow::before {
   content: "";
   width: 0.2rem;
-  height: 17px;
+  height: 30px;
   background: var(--accent);
 }
 
