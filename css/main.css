@@ -18,9 +18,9 @@
   --sidebar-text: rgba(248, 250, 252, 0.7);
   --sidebar-hover: #dc2626;
 
-  --heading: "Outfit", sans-serif;
-  --sans: "Sora", sans-serif;
-  --mono: "DM Mono", monospace;
+  --heading: "Century Gothic", "Trebuchet MS", Arial, sans-serif;
+  --sans: Aptos, "Segoe UI", Arial, sans-serif;
+  --mono: "Aptos Mono", Consolas, monospace;
 
   --radius: 999px;
   --radius-card: 20px;
@@ -297,10 +297,9 @@ section:first-child {
 
 .eyebrow::before {
   content: "";
-  width: 1.5rem;
-  height: 6px;
+  width: 0.2rem;
+  height: 17px;
   background: var(--accent);
-  border-radius: 20px;
 }
 
 h1 {

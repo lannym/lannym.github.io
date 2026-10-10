@@ -1,7 +1,7 @@
 // ============================================================
 // LANNY MADHAVAN — Portfolio SCSS
 // Colour scheme : Flame
-// Fonts         : Outfit (headings) · Sora (body) · DM Mono (labels)
+// Fonts         : Century Gothic (headings) · Aptos (body) · Aptos Mono (labels)
 // Nav           : Hamburger overlay on ALL screen sizes
 // Accessibility : WCAG AAA compliant
 // ============================================================
@@ -20,9 +20,9 @@
   --sidebar-brand: #ffb088;
   --sidebar-text:  rgba(255,200,170,0.65);
   --sidebar-hover: rgba(212,56,13,0.12);
-  --heading: 'Outfit', sans-serif;
-  --sans:    'Sora', sans-serif;
-  --mono:    'DM Mono', monospace;
+  --heading: "Century Gothic", "Trebuchet MS", Arial, sans-serif;
+  --sans: Aptos, "Segoe UI", Arial, sans-serif;
+  --mono: "Aptos Mono", Consolas, monospace;
   --radius:  999px;
   --radius-card: 24px;
   --shadow:  0 18px 40px rgba(0,0,0,0.08);
@@ -235,7 +235,12 @@ section {
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 1rem;
-  &::before { content: ''; width: 1.5rem; height: 1px; background: var(--accent); }
+  &::before {
+    content: '';
+    width: 0.2rem;
+    height: 17px;
+    background: var(--accent);
+  }
 }
 
 h1 {
