@@ -6,6 +6,7 @@
 
   --accent: #9a1b1b;
   --accent2: #b91c1c;
+  --accent3: #dc2626;
 
   --text: #0f172a;
   --muted: #64748b;
@@ -109,7 +110,7 @@ a {
 }
 
 .menu-toggle:hover {
-  border-color: var(--accent);
+  border-color: var(--accent3);
 }
 
 .menu-toggle:hover span {

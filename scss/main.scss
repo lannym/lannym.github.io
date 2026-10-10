@@ -13,6 +13,7 @@
   --surface2:#fae0d0;
   --accent:  #9a1b1b;
   --accent2: #a82d0a;
+  --accent3: #dc2626;
   --text:    #1a0800;
   --muted:   #7a4020;
   --border:  #f0c8b0;
@@ -85,7 +86,7 @@ a { color: inherit; text-decoration: none; }
     transition: transform 0.3s, opacity 0.3s;
   }
 
-  &:hover { border-color: var(--accent); span { background: var(--accent); } }
+  &:hover { border-color: var(--accent3); span { background: var(--accent); } }
 
   &.open {
     span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
