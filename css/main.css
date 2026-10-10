@@ -422,7 +422,7 @@ h3 {
 .slide-caption p {
   font-family: var(--mono);
   font-size: 0.72rem;
-  color: var(--sidebar-brand);
+  color: #fff;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: normal;
@@ -431,6 +431,12 @@ h3 {
   /* Give the caption room — buttons sit bottom-right */
   max-width: calc(100% - 5.5rem);
   line-height: 1.5;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 7px 20px;
+  border-radius: 20px;
+  display: inline-block;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .carousel-controls {
